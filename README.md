@@ -18,7 +18,7 @@ A simple Windows desktop application for remapping keyboard keys.
 
 ## Screenshot
 
-![Keyboard Mapper](assets/screenshot.png)
+![Keyboard Mapper](assets/Screenshot.png)
 
 ## Technologies
 
