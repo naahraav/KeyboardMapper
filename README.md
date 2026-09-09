@@ -1,61 +1,55 @@
 # Keyboard Mapper
 
-A lightweight Windows keyboard remapping application built with C++ and Win32 API.
+A simple Windows desktop application for remapping keyboard keys.
 
 ## Features
 
-- Remap one keyboard key to another
-- Global keyboard mapping
+- Remap one keyboard key to another key
+- Global keyboard mapping using Windows Low-Level Keyboard Hook
 - Enable / disable keyboard mapping
-- Dark Mode and Light Mode
-- Follow Windows system theme
-- English and Indonesian language
+- Add and delete key mappings
+- Save and load mapping presets
+- Automatic configuration saving
+- Windows startup option
 - System tray support
-- Run automatically on Windows startup
-- Export and import keyboard mapping presets
-- Prevent multiple instances of the application
+- Dark mode and light mode
+- English and Bahasa Indonesia support
+- Single-instance application
 
 ## Screenshot
+![Keyboard Mapper](assets/screenshot.png)
 
-![Keyboard Mapper](assets/Screenshot.png)
+## Technologies
 
-## Requirements
+- C++
+- Win32 API
+- Windows Hooks
+- Windows Registry
+- Windows System Tray
+- Common Controls
+- Visual Studio
 
-- Windows 10 / Windows 11
-- C++ compiler with Windows SDK
+## How It Works
 
-## Installation
+The application captures keyboard input using `WH_KEYBOARD_LL`.
 
-1. Download the latest `KeyboardMapper.exe` from Releases.
-2. Run the application.
-3. Select the source key.
-4. Select the target key.
-5. Click **Save**.
-6. Click **START** to enable the mapping.
+Example:
 
-## Example
+`A → B`
 
-For example:
-
-`Caps Lock → Escape`
-
-After activating the mapping, pressing Caps Lock will behave like Escape.
+When mapping is active, pressing `A` will produce `B`.
 
 ## Build
 
-This project uses the Windows Win32 API.
+1. Open the project using Visual Studio.
+2. Make sure the project is configured for Windows desktop development.
+3. Build the project using `Build > Build Solution`.
+4. Run the generated `.exe`.
 
-Compile `keyboardmapping.cpp` using a C++ compiler with the Windows SDK.
+## Configuration
 
-Example using MinGW:
+Mapping presets use the `.kmp` file format.
 
-```bash
-g++ keyboardmapping.cpp -o KeyboardMapper.exe \
-    -mwindows \
-    -lcomctl32 \
-    -lshell32 \
-    -ldwmapi \
-    -lgdi32 \
-    -luxtheme \
-    -ladvapi32 \
-    -lcomdlg32
+The application automatically saves its default mappings to:
+
+`default_mappings.kmp`
