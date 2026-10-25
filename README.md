@@ -46,6 +46,7 @@ When mapping is active, pressing `A` will produce `B`.
 2. Make sure the project is configured for Windows desktop development.
 3. Build the project using `Build > Build Solution`.
 4. Run the generated `.exe`.
+5. enjoy 
 
 ## Configuration
 
@@ -54,3 +55,4 @@ Mapping presets use the `.kmp` file format.
 The application automatically saves its default mappings to:
 
 `default_mappings.kmp`
+
