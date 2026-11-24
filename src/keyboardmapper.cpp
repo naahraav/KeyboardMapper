@@ -10,6 +10,8 @@
 #include <unordered_map>
 #include <sstream>
 
+#include "resource.h"
+
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "shell32.lib")
 #pragma comment(lib, "dwmapi.lib")
@@ -610,7 +612,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         g_nid.uID = ID_TRAY_ICON;
         g_nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
         g_nid.uCallbackMessage = WM_TRAYICON;
-        g_nid.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+        g_nid.hIcon = LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCEW(IDI_APP_ICON));
         wcscpy_s(g_nid.szTip, g_i18n[g_currentLang].trayTip);
         Shell_NotifyIconW(NIM_ADD, &g_nid);
 
@@ -954,14 +956,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     g_activeVisual = GetCurrentEffectiveTheme();
 
-    WNDCLASSW wc = { 0 };
+    WNDCLASSEXW wc = { 0 };
+    wc.cbSize = sizeof(WNDCLASSEXW);
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.lpszClassName = WINDOW_CLASS_NAME;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_APP_ICON));
+    wc.hIconSm = (HICON)LoadImageW(hInstance, MAKEINTRESOURCEW(IDI_APP_ICON), IMAGE_ICON, 16, 16, LR_DEFAULTCOLOR);
     wc.hbrBackground = CreateSolidBrush(PALETTE[g_activeVisual].bg);
 
-    RegisterClassW(&wc);
+    RegisterClassExW(&wc);
 
     g_hWndMain = CreateWindowExW(
         0, WINDOW_CLASS_NAME,

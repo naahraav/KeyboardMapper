@@ -1,5 +1,7 @@
 # Keyboard Mapper
 
+<img src="assets/logo-small.png" alt="Keyboard Mapper logo" width="96" height="96" />
+
 A simple Windows desktop application for remapping keyboard keys.
 
 ## Features
